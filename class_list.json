@@ -1,0 +1,316 @@
+{
+  "status": 0,
+  "message": null,
+  "data": [
+    {
+      "classId": "1",
+      "className": "聊天社交",
+      "tags": [
+        {
+          "tagId": "16",
+          "tagName": "社交"
+        },
+        {
+          "tagId": "33",
+          "tagName": "视频"
+        },
+        {
+          "tagId": "48",
+          "tagName": "语音"
+        }
+      ]
+    },
+    {
+      "classId": "2",
+      "className": "输入法",
+      "tags": [
+        {
+          "tagId": "1",
+          "tagName": "拼音"
+        },
+        {
+          "tagId": "18",
+          "tagName": "五笔"
+        },
+        {
+          "tagId": "35",
+          "tagName": "手写"
+        },
+        {
+          "tagId": "87",
+          "tagName": "智能"
+        }
+      ]
+    },
+    {
+      "classId": "3",
+      "className": "浏览器",
+      "tags": [
+        {
+          "tagId": "2",
+          "tagName": "高速"
+        },
+        {
+          "tagId": "19",
+          "tagName": "双核"
+        }
+      ]
+    },
+    {
+      "classId": "4",
+      "className": "下载工具",
+      "tags": [
+        {
+          "tagId": "3",
+          "tagName": "通用"
+        },
+        {
+          "tagId": "20",
+          "tagName": "专用"
+        }
+      ]
+    },
+    {
+      "classId": "5",
+      "className": "视频直播",
+      "tags": [
+        {
+          "tagId": "4",
+          "tagName": "本地播放"
+        },
+        {
+          "tagId": "21",
+          "tagName": "网络视频"
+        },
+        {
+          "tagId": "36",
+          "tagName": "直播软件"
+        }
+      ]
+    },
+    {
+      "classId": "6",
+      "className": "音乐软件",
+      "tags": [
+        {
+          "tagId": "5",
+          "tagName": "网络音乐"
+        },
+        {
+          "tagId": "22",
+          "tagName": "K歌软件"
+        },
+        {
+          "tagId": "37",
+          "tagName": "音频制作"
+        }
+      ]
+    },
+    {
+      "classId": "7",
+      "className": "图片图形",
+      "tags": [
+        {
+          "tagId": "6",
+          "tagName": "看图软件"
+        },
+        {
+          "tagId": "23",
+          "tagName": "美化编辑"
+        },
+        {
+          "tagId": "38",
+          "tagName": "专业制图"
+        }
+      ]
+    },
+    {
+      "classId": "8",
+      "className": "安全防护",
+      "tags": [
+        {
+          "tagId": "8",
+          "tagName": "杀毒软件"
+        },
+        {
+          "tagId": "25",
+          "tagName": "安全助手"
+        },
+        {
+          "tagId": "40",
+          "tagName": "清理"
+        }
+      ]
+    },
+    {
+      "classId": "9",
+      "className": "解压刻录",
+      "tags": [
+        {
+          "tagId": "9",
+          "tagName": "压缩"
+        },
+        {
+          "tagId": "26",
+          "tagName": "光盘"
+        },
+        {
+          "tagId": "41",
+          "tagName": "光驱"
+        }
+      ]
+    },
+    {
+      "classId": "10",
+      "className": "系统工具",
+      "tags": [
+        {
+          "tagId": "10",
+          "tagName": "系统优化"
+        },
+        {
+          "tagId": "27",
+          "tagName": "硬件检测"
+        },
+        {
+          "tagId": "42",
+          "tagName": "备份还原"
+        }
+      ]
+    },
+    {
+      "classId": "11",
+      "className": "驱动工具",
+      "tags": [
+        {
+          "tagId": "11",
+          "tagName": "通用驱动"
+        },
+        {
+          "tagId": "28",
+          "tagName": "硬件驱动"
+        },
+        {
+          "tagId": "43",
+          "tagName": "外设驱动"
+        }
+      ]
+    },
+    {
+      "classId": "12",
+      "className": "办公教育",
+      "tags": [
+        {
+          "tagId": "12",
+          "tagName": "邮件邮箱"
+        },
+        {
+          "tagId": "29",
+          "tagName": "文档处理"
+        },
+        {
+          "tagId": "44",
+          "tagName": "记事管理"
+        },
+        {
+          "tagId": "122",
+          "tagName": "学习教育"
+        }
+      ]
+    },
+    {
+      "classId": "13",
+      "className": "编程软件",
+      "tags": [
+        {
+          "tagId": "13",
+          "tagName": "开发平台"
+        },
+        {
+          "tagId": "30",
+          "tagName": "辅助工具"
+        },
+        {
+          "tagId": "45",
+          "tagName": "运行库"
+        }
+      ]
+    },
+    {
+      "classId": "14",
+      "className": "股票网银",
+      "tags": [
+        {
+          "tagId": "14",
+          "tagName": "网上银行"
+        },
+        {
+          "tagId": "31",
+          "tagName": "股票行情"
+        },
+        {
+          "tagId": "46",
+          "tagName": "交易支付"
+        }
+      ]
+    },
+    {
+      "classId": "15",
+      "className": "剪辑工具",
+      "tags": [
+        {
+          "tagId": "7",
+          "tagName": "视频编辑"
+        },
+        {
+          "tagId": "24",
+          "tagName": "格式转换"
+        },
+        {
+          "tagId": "39",
+          "tagName": "字幕制作"
+        }
+      ]
+    },
+    {
+      "classId": "17",
+      "className": "助手工具",
+      "tags": [
+        {
+          "tagId": "17",
+          "tagName": "刷机"
+        },
+        {
+          "tagId": "34",
+          "tagName": "助手模拟器"
+        },
+        {
+          "tagId": "49",
+          "tagName": "WiFi工具"
+        },
+        {
+          "tagId": "50",
+          "tagName": "网盘"
+        }
+      ]
+    },
+    {
+      "classId": "18",
+      "className": "桌面美化",
+      "tags": [
+        {
+          "tagId": "15",
+          "tagName": "主题"
+        },
+        {
+          "tagId": "32",
+          "tagName": "壁纸"
+        },
+        {
+          "tagId": "47",
+          "tagName": "桌面工具"
+        }
+      ]
+    }
+  ]
+}
