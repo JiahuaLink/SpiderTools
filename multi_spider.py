@@ -1,4 +1,4 @@
-import ctypes
+
 import os.path
 import sys
 import threading
@@ -26,7 +26,7 @@ max_processes = multiprocessing.cpu_count()
 # IO密集型任务线程数是系统核心数的2倍数量
 max_threads = max_processes * 2
 # 每个类别获取app总数量 主要是修改这个配置 100,200,300
-class_app_max_num = 500
+class_app_max_num = 5000
 # 每次请求获取应用信息的个数（可改 35 50 75 100 200）'''''''''''。
 request_limits = 200 if class_app_max_num > 200 else class_app_max_num
 # 每次请求调用所需要的休眠时间 单位秒
@@ -36,7 +36,7 @@ save_file_nums = 0
 # 保存的文本类型  可选 excel 或 json 或者 all 两种都保存
 save_file_mode = 'all'
 # task_list填入需要采集的任务列表 可选 '聊天社交', '输入法', '浏览器', '下载工具', '视频直播', '音乐软件', '图片图形', '安全防护', '解压刻录', '系统工具', '驱动工具', '办公教育', '编程软件', '股票网银', '剪辑工具', '助手工具', '桌面美化'
-task_list = ['聊天社交', '聊天社交', '输入法']
+task_list = ['聊天社交']
 # 爬取首页
 need_home_page = False
 
@@ -230,6 +230,7 @@ class ShopSpider:
         :return:
         """
 
+        global app_list
         plain = '{"code":"soft","id":"%s","limit":%s,"skip":%s,"tagId":%s}' % (soft_id, request_limits, skip, tagId)
         enc_data = self.aes_cipher(plain)
         data = {"data": enc_data}
@@ -396,6 +397,7 @@ def check_valid():
 
 def run(app_task_list):
     # 设置一个允许max_processes个进程并发的进程池
+    print(f'执行采集任务{task_list}')
     pool = multiprocessing.Pool(processes=max_processes)
     app_task_list_pbar = tqdm(app_task_list)
     for i, app_task in enumerate(app_task_list_pbar):
@@ -411,7 +413,7 @@ def run(app_task_list):
         pool.apply_async(MultiTask.run_process_task,
                          args=(app_task, app_data_list))  # 维持执行的进程总数为max_processes，当一个进程执行完后启动一个新进程.
     pool.close()
-    progress_bar(len(app_task_list), f'多进程任务加载加载完毕,执行进程总数{len(app_task_list)}，启动线程数{max_threads}\n')
+    progress_bar(len(app_task_list), f'多进程任务加载加载完毕,执行进程总数{max_processes}，启动线程数{max_threads}\n')
     pool.join()
 
 
@@ -436,7 +438,6 @@ if __name__ == '__main__':
         FileManager.remove_txt()
         print("开始解析网页")
         app_task_list = generate_app_task_list()
-        total_task_counts = multiprocessing.Manager().Value(ctypes.c_int, len(app_task_list) * class_app_max_num)
         run(app_task_list)
         print('\n已完成，程序耗时:{}s'.format(round(time.time() - start, 2)))
         FileManager.save_file(app_data_list)
