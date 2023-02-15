@@ -700,6 +700,7 @@ def progress_bar(i, message):
 
 if __name__ == '__main__':
     """
+    pyinstaller -F --upx-dir=F:\Python\upx.exe -i icon.ico xx.py
     """
     try:
         multiprocessing.freeze_support()
