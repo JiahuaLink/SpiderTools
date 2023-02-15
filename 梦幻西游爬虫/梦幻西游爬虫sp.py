@@ -656,8 +656,8 @@ class SpiderThread(Thread):
                                 print(f"\n{door}数据导出成功，当前获取数量为{process_counts}")
                                 lock.release()
                                 self.semaphores_break = True
-                    else:
-                        self.queue.task_done()
+
+
             except Exception as e:
                 print(e)
 
