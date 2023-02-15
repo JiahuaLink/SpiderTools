@@ -641,6 +641,11 @@ class SpiderThread(Thread):
 
                     temp_data = self.parse(self.spider, param)
                     if temp_data:
+                        lock.acquire()
+                        process_counts = len(self.process_list)
+                        FileManager.export_excel(region_name, server_name, self.results)
+                        print(f"\n{door}数据导出成功，当前获取数量为{process_counts}")
+                        lock.release()
                         if temp_data not in self.results:
                             self.results.extend(temp_data)
                             self.process_list.extend(temp_data)
@@ -651,7 +656,7 @@ class SpiderThread(Thread):
                                 FileManager.export_excel(region_name, server_name, self.results)
                                 lock.release()
                             process_counts = len(self.process_list)
-                            if process_counts >= self.total:
+                            if process_counts >= self.total or page % 3 == 0:
                                 lock.acquire()
                                 FileManager.export_excel(region_name, f'{server_name}_{door}', self.results)
                                 print(f"\n{door}数据导出成功，当前获取数量为{process_counts}")
