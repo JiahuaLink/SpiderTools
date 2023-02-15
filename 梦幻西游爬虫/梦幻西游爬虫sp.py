@@ -553,7 +553,7 @@ class MultiTask:
     @staticmethod
     def run_process_task(region_name, server_name, server_id, areaid, door, per_page, total_reqs, total, from_shareid,
                          high_price, low_price, id_start, id_end, results):
-        print(f'\n开始获取【{region_name}】【{server_name}】【{door}】查总询页数 {total_reqs},每页数据量 {per_page}')
+        print(f'\n开始获取【{region_name}】【{server_name}】【{door}】查询总页数 {total_reqs},每页数据量 {per_page}')
         params = []
         process_list = []
         global process_counts
