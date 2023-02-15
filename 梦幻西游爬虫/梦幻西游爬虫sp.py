@@ -215,65 +215,66 @@ class XYQSpider:
         data = self.get_base_info(region_name, server_name, areaid, server_id, door, price_max, price_min, page,
                                   per_page,
                                   search_mode='data')
-        equips = data['equips']
-        reco_request_id = data.get('reco_request_id')
         thread_name = f'[Thread-{region_name}-{server_name}-{door}-{page}页]'
-        # logger.info(thread_name + '开始查询')
-        try:
-            if equips:
-                # logger.info(thread_name, '采集到数据量', len(equips))
-                for equip in equips:
-                    server_name = equip['server_name']
-                    # area_name = equip['area_name']
-                    seller_roleid = int(equip['seller_roleid'])
-                    seller_nickname = equip['seller_nickname']
-                    equip_level_desc = equip['equip_level_desc']
-                    price = equip['price']
-                    expire_time = equip['expire_time']
-                    selling_time = equip['selling_time']
-                    tag_key = equip['tag_key']
-                    eid = equip['eid']
-                    equip_refer = equip['kindid']
-                    buy_url = f'https://xyq.cbg.163.com/equip?s={server_id}&eid={eid}&view_loc={view_loc}|{urllib.parse.quote_plus(tag_key)}&from_shareid={from_shareid}&reco_request_id={reco_request_id}&equip_refer={equip_refer}'
-                    # logger.info(seller_roleid, id_start, id_end, low_price, high_price, price)
-                    message = f"\nID：{seller_roleid} 门派：{door} 昵称：{seller_nickname} 等级：{equip_level_desc} 价格：{price} 出售时间：{selling_time} 超时时间：{expire_time}\n" \
-                              f"藏宝阁链接：{buy_url}\n"
-                    is_all_print = main_config['all_print']
-                    if is_all_print.upper() == 'YES':
-                        print(message)
-                    lock.acquire()
-                    process_counts += 1
-                    progress_bar(process_counts,
-                                 message=f"【{region_name} {server_name} {door}】第{page}页，总进度")
-                    FileManager.save_txt(message)
-                    lock.release()
-                    if self.check_condition(seller_roleid, id_start, id_end):
-                        print(message)
-                        data = {
-                            "大区": region_name,
-                            "区服": server_name,
-                            "门派": door,
-                            "ID": seller_roleid,
-                            "昵称": seller_nickname,
-                            "类型": equip_refer,
-                            "级别": equip_level_desc,
-                            "价格": price,
-                            "出售时间": selling_time,
-                            "过期时间": expire_time,
-                            "藏宝阁链接": buy_url
-                        }
-                        temp.append(data)
+        if data is not None:
+            equips = data['equips']
+            reco_request_id = data.get('reco_request_id')
+            # logger.info(thread_name + '开始查询')
+            try:
+                if equips:
+                    # logger.info(thread_name, '采集到数据量', len(equips))
+                    for equip in equips:
+                        server_name = equip['server_name']
+                        # area_name = equip['area_name']
+                        seller_roleid = int(equip['seller_roleid'])
+                        seller_nickname = equip['seller_nickname']
+                        equip_level_desc = equip['equip_level_desc']
+                        price = equip['price']
+                        expire_time = equip['expire_time']
+                        selling_time = equip['selling_time']
+                        tag_key = equip['tag_key']
+                        eid = equip['eid']
+                        equip_refer = equip['kindid']
+                        buy_url = f'https://xyq.cbg.163.com/equip?s={server_id}&eid={eid}&view_loc={view_loc}|{urllib.parse.quote_plus(tag_key)}&from_shareid={from_shareid}&reco_request_id={reco_request_id}&equip_refer={equip_refer}'
+                        # logger.info(seller_roleid, id_start, id_end, low_price, high_price, price)
+                        message = f"\nID：{seller_roleid} 门派：{door} 昵称：{seller_nickname} 等级：{equip_level_desc} 价格：{price} 出售时间：{selling_time} 超时时间：{expire_time}\n" \
+                                  f"藏宝阁链接：{buy_url}\n"
+                        is_all_print = main_config['all_print']
+                        if is_all_print.upper() == 'YES':
+                            print(message)
+                        lock.acquire()
+                        process_counts += 1
+                        progress_bar(process_counts,
+                                     message=f"【{region_name} {server_name} {door}】第{page}页，总进度")
+                        FileManager.save_txt(message)
+                        lock.release()
+                        if self.check_condition(seller_roleid, id_start, id_end):
+                            print(message)
+                            data = {
+                                "大区": region_name,
+                                "区服": server_name,
+                                "门派": door,
+                                "ID": seller_roleid,
+                                "昵称": seller_nickname,
+                                "类型": equip_refer,
+                                "级别": equip_level_desc,
+                                "价格": price,
+                                "出售时间": selling_time,
+                                "过期时间": expire_time,
+                                "藏宝阁链接": buy_url
+                            }
+                            temp.append(data)
 
-
-            else:
-                logger.info(thread_name + "获取不到数据任务，终止", print(data))
-                lock.acquire()
-                semaphores.value += 1
-                lock.release()
+            except Exception as e:
+                logger.error(f"{thread_name},{traceback.print_exc()},{str(e)}")
                 return []
-        except Exception as e:
-            logger.error(f"{thread_name},{traceback.print_exc()},{str(e)}")
+        else:
+            logger.info("获取不到数据任务，终止任务" + print(data))
+            lock.acquire()
+            semaphores.value += 1
+            lock.release()
             return []
+
         return temp
 
     def get_userinfo_shareid(self):
